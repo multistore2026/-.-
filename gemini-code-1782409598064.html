@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTI.STORE — Інноваційний Маркетплейс</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #10b981;
+            --dark: #0f172a;
+            --gray-bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-bg);
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 850;
+            color: var(--dark);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--gray-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .cart-icon {
+            background: var(--dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-categories {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 20px;
+        }
+
+        .cat-btn {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .cat-btn.active {
+            color: var(--primary);
+        }
+
+        .cat-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        main {
+            max-width: 1300px;
+            width: 100%;
+            margin: 30px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #94a3b8;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+            min-height: 44px;
+            line-height: 1.4;
+        }
+
+        .product-bottom {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .buy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .buy-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Кошик */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+
+        .cart-body {
+            padding: 24px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            background: var(--gray-bg);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 999;
+            display: none;
+        }
+
+        .cart-overlay.open {
+            display: block;
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">⚡️ Відправка по Україні Новою Поштою в день замовлення!</div>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo" onclick="filterCategory('all', document.getElementById('btn-all'))">MULTI<span>.STORE</span></a>
+            <div class="search-box">
+                <input type="text" id="searchInput" oninput="searchProducts()" placeholder="Пошук серед 45 топ-товарів...">
+            </div>
+            <div class="cart-icon" onclick="toggleCart(true)">
+                🛒 Кошик (<span id="cart-count">0</span>)
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-categories">
+        <div class="nav-container">
+            <button id="btn-all" class="cat-btn active" onclick="filterCategory('all', this)">Всі категорії</button>
+            <button class="cat-btn" onclick="filterCategory('electronics', this)">Електроніка</button>
+            <button class="cat-btn" onclick="filterCategory('home', this)">Розумний Дім</button>
+            <button class="cat-btn" onclick="filterCategory('accessories', this)">Аксесуари</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="section-title" id="section-name">Всі пропозиції</div>
+        <div class="products-grid" id="products-container"></div>
+    </main>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Ваш кошик</h3>
+            <button class="close-cart" onclick="toggleCart(false)">&times;</button>
+        </div>
+        <div class="cart-body" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Всього:</span>
+                <span><span id="total-price">0</span> грн.</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Оформити Дроп-замовлення</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MULTI.STORE. Платформа e-commerce дропшипінгу.</p>
+    </footer>
+
+    <script>
+        const products = [
+            // Електроніка (1-15)
+            { id: 1, category: 'electronics', title: 'Складана магнітна зарядка 3-в-1 MagSafe', price: 1290 },
+            { id: 2, category: 'electronics', title: 'Алюсiнiєва підставка для ноутбука з RGB кулерами', price: 890 },
+            { id: 3, category: 'electronics', title: 'Петличний мікрофон бездротовий (Type-C / Lightning)', price: 650 },
+            { id: 4, category: 'electronics', title: 'Павербанк 65W на 30 000 mAh (для ноутбуків)', price: 2100 },
+            { id: 5, category: 'electronics', title: 'Компактна механічна клавіатура (60% layout)', price: 1190 },
+            { id: 6, category: 'electronics', title: 'Бездротові навушники з ANC (шумозаглушенням)', price: 990 },
+            { id: 7, category: 'electronics', title: 'Настільний штатив-стабілізатор з відстеженням обличчя', price: 1150 },
+            { id: 8, category: 'electronics', title: 'Автомобільний тримач із бездротовою зарядкою та сенсором', price: 690 },
+            { id: 9, category: 'electronics', title: 'Ігровий коврик для миші з RGB-підсвіткою (900x400 мм)', price: 550 },
+            { id: 10, category: 'electronics', title: 'Вертикальна ергономічна бездротова миша', price: 690 },
+            { id: 11, category: 'electronics', title: 'Настільний USB-хаб 4-в-1 в алюмінієвому корпусе', price: 390 },
+            { id: 12, category: 'electronics', title: 'Портативний міні-принтер для чеків та фото', price: 990 },
+            { id: 13, category: 'electronics', title: 'Bluetooth-трекер для пошуку речей (аналог AirTag)', price: 320 },
+            { id: 14, category: 'electronics', title: 'Компактний ручний пилосос для клавіатури та авто', price: 590 },
+            { id: 15, category: 'electronics', title: 'Графічний планшет для малювання та заміток (8.5\")', price: 280 },
+            
+            // Розумний Дім (16-30)
+            { id: 16, category: 'home', title: 'Смарт-лампа LED із вбудованим акумулятором (E27)', price: 450 },
+            { id: 17, category: 'home', title: 'Настільна смарт-лампа з бездротовою зарядкою', price: 980 },
+            { id: 18, category: 'home', title: 'Трендовий нічник-проєктор «Астронавт» (TikTok хіт)', price: 790 },
+            { id: 19, category: 'home', title: 'Розумний датчик температури та вологості з Wi-Fi', price: 490 },
+            { id: 20, category: 'home', title: 'Портативний міні-блендер на акумуляторі', price: 580 },
+            { id: 21, category: 'home', title: 'Сенсорний дозатор для рідкого мила', price: 520 },
+            { id: 22, category: 'home', title: 'Автоматичний штопор для вина на батарейках', price: 600 },
+            { id: 23, category: 'home', title: 'Настінний світильник з датчиком руху на магніті', price: 350 },
+            { id: 24, category: 'home', title: 'Портативний ультразвуковий зволожувач повітря', price: 420 },
+            { id: 25, category: 'home', title: 'Електронні кухонні ваги з LED-экраном', price: 390 },
+            { id: 26, category: 'home', title: 'Смарт-розетка з Wi-Fi та моніторингом енергії', price: 580 },
+            { id: 27, category: 'home', title: 'Бездротовий електричний кухонний подрібнювач', price: 490 },
+            { id: 28, category: 'home', title: 'Вакуумний пакувальник для продуктів (вакууматор)', price: 750 },
+            { id: 29, category: 'home', title: 'Електронний термометр-гігрометр для кімнати', price: 220 },
+            { id: 30, category: 'home', title: 'Розумний бездротовий дверний дзвінок з Wi-Fi', price: 1100 },
+
+            // Аксесуари (31-45)
+            { id: 31, category: 'accessories', title: 'Рюкзак Anti-Theft із кодовим замком та USB портом', price: 1450 },
+            { id: 32, category: 'accessories', title: 'Сумка-слинг нагрудна (кросс-боді) з RFID', price: 650 },
+            { id: 33, category: 'accessories', title: 'Розумний шкіряний гаманець під Apple AirTag', price: 550 },
+            { id: 34, category: 'accessories', title: 'Термокружка з LED-екраном (індикатор температури)', price: 450 },
+            { id: 35, category: 'accessories', title: 'Органайзер для кабелів та гаджетів (кейс)', price: 390 },
+            { id: 36, category: 'accessories', title: 'Шкіряний картхолдер із висувним механізмом', price: 380 },
+            { id: 37, category: 'accessories', title: 'Сонцезахисні окуляри в стилі Techwear', price: 490 },
+            { id: 38, category: 'accessories', title: 'Силіконові водонепроникні чохли-бахіли для взуття', price: 190 },
+            { id: 39, category: 'accessories', title: 'Спортивна сумка-бананка зі світловідбивачами', price: 390 },
+            { id: 40, category: 'accessories', title: 'Металева вічна сірник-кресало (брелок)', price: 180 },
+            { id: 41, category: 'accessories', title: 'Дорожня косметичка-несесер з гачком', price: 420 },
+            { id: 42, category: 'accessories', title: 'Складана парасолька-автомат з ліхтариком', price: 650 },
+            { id: 43, category: 'accessories', title: 'Водонепроникний чохол для смартфона', price: 250 },
+            { id: 44, category: 'accessories', title: 'Багатофункциональний брелок-мультитул (18-в-1)', price: 290 },
+            { id: 45, category: 'accessories', title: 'Спортивна пляшка для води з розміткою (1 л)', price: 350 }
+        ];
+
+        let cart = [];
+        let currentCategory = 'all';
+
+        function renderProducts(items) {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            items.forEach(p => {
+                let catName = 'Електроніка';
+                if(p.category === 'home') catName = 'Розумний дім';
+                if(p.category === 'accessories') catName = 'Аксесуари';
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">📸 Зображення товару</div>
+                    <div class="product-info">
+                        <div class="product-category">${catName}</div>
+                        <div class="product-title">${p.title}</div>
+                        <div class="product-bottom">
+                            <div class="product-price">${p.price} грн.</div>
+                            <button class="buy-btn" onclick="addToCart(${p.id})">В кошик</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterCategory(category, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = category;
+            
+            document.getElementById('section-name').innerText = btn.innerText;
+            searchProducts();
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = products;
+            
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+            if (query) {
+                filtered = filtered.filter(p => p.title.toLowerCase().includes(query));
+            }
+            renderProducts(filtered);
+        }
+
+        function toggleCart(open) {
+            document.getElementById('cartSidebar').classList.toggle('open', open);
+            document.getElementById('cartOverlay').classList.toggle('open', open);
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div>
+                        <strong style="font-size:14px;">${item.title}</strong><br>
+                        <span style="color:var(--primary); font-weight:600;">${item.price} грн.</span>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${index})">&times;</button>
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById('total-price').innerText = total.toLocaleString();
+        }
+
+        function checkout() {
+            if(cart.length === 0) return alert('Кошик порожній');
+            alert('Замовлення прийнято! Дані автоматично передаються на склад постачальника для відправки клієнту.');
+            cart = [];
+            updateCart();
+            toggleCart(false);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => renderProducts(products));
+    </script>
+</body>
+</html>
