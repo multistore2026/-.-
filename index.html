@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
             --shadow-prom: 0 1px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Плавная анимация покачивания всего экрана при входе (ровно 4 секунды) */
+        /* Анімація похитування сітки товарів (рівно 4 секунди) */
         @keyframes entranceShake {
             0% { transform: translateX(0); }
             10% { transform: translateX(-10px); }
@@ -53,7 +53,7 @@
             overflow-x: hidden;
         }
 
-        /* Хедер в стиле Пром */
+        /* Хедер в стилі Пром */
         header {
             background: var(--dark-blue);
             padding: 14px 16px;
@@ -78,7 +78,7 @@
             color: #ffbe00; 
         }
 
-        /* Блок динамического приветствия по времени суток с флагом */
+        /* Блок привітання за часом доби з прапором */
         .greeting-block {
             display: flex;
             align-items: center;
@@ -118,18 +118,16 @@
             padding: 12px;
         }
 
-        /* Сетка товаров в 2 колонки */
+        /* Сітка товарів у 2 колонки */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
-        /* Сделай карточку кликабельной и красивой */
+        /* Клікабельна картка товару */
         .product-card {
-            background: var(--surface);
-: border-radius: var(--radius-prom);
-            border: 1px solid var(--border-prom);
+         border: 1px solid var(--border-prom);
             box-shadow: var(--shadow-prom);
             display: flex;
             flex-direction: column;
@@ -138,6 +136,7 @@
             overflow: hidden;
             cursor: pointer;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            user-select: none;
         }
 
         .product-card:hover {
@@ -145,7 +144,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        /* Контейнер картинок и слайдер */
+        /* Слайдер зображень */
         .slider-container {
             position: relative;
             width: 100%;
@@ -178,7 +177,7 @@
             object-fit: contain; 
         }
 
-        /* Стрелочки навигации слайдера */
+        /* Стрілки слайдера */
         .slider-arrow {
             position: absolute;
             top: 50%;
@@ -223,7 +222,7 @@
             background: var(--dark-blue);
         }
 
-        /* Описание и инфо внутри карточки */
+        /* Інформація про товар */
         .product-info {
             padding: 12px;
             display: flex;
@@ -244,7 +243,7 @@
             overflow: hidden;
         }
 
-        /* Описание характеристик товара */
+        /* Опис характеристик */
         .product-description {
             font-size: 11px;
             color: var(--text-muted);
@@ -281,8 +280,7 @@
             font-size: 19px;
             font-weight: 700;
             color: var(--pure-black);
-        }
-/* Сине-черная кнопка купить */
+/* Синьо-чорна кнопка */
         .buy-btn {
             display: flex;
             align-items: center;
@@ -307,7 +305,7 @@
             fill: #ffffff;
         }
 
-        /* Оформление заказа модалка */
+        /* Модальне вікно замовлення */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -397,12 +395,11 @@
         }
     </style>
 </head>
-<body class="shake-entrance">
+<body>
 
     <header>
         <div class="logo">MULTI<span>.STORE</span></div>
         
-        <!-- Блок приветствия по времени суток с флагом Украины -->
         <div class="greeting-block">
             <span id="timeGreeting">Вітаємо</span>
             <div class="ukraine-flag">
@@ -413,15 +410,14 @@
     </header>
 
     <div class="container">
-        <div class="products-grid">
+        <div class="products-grid shake-entrance" id="gridBlock">
 
-            <!-- ТОВАР 1 -->
             <div class="product-card" id="p1" onclick="handleCardClick(event, 'p1', 'Бездротові навушники Nia NB710')">
                 <div class="slider-container">
                     <div class="slider-track">
                         <div class="slide"><img src="17824816315674350906478093768518.jpg" alt="Nia 1"></div>
- <div class="slide"><img src="gkrvarevrnkvy (1).jpg" alt="Nia 2"></div>
-                        <div class="slide"><img src="krvatravpavipk (1).jpg" alt="Nia 3"></div>
+                        <div class="slide"><img src="gkrvarevrnkvy (1).jpg" alt="Nia 2"></div>
+ <div class="slide"><img src="krvatravpavipk (1).jpg" alt="Nia 3"></div>
                     </div>
                     <button class="slider-arrow arrow-left" onclick="moveSlide('p1', -1, event)">&#10094;</button>
                     <button class="slider-arrow arrow-right" onclick="moveSlide('p1', 1, event)">&#10095;</button>
@@ -445,7 +441,6 @@
                 </div>
             </div>
 
-            <!-- ТОВАР 2 -->
             <div class="product-card" id="p2" onclick="handleCardClick(event, 'p2', 'Бездротові навушники Air 13 Pro')">
                 <div class="slider-container">
                     <div class="slider-track">
@@ -475,10 +470,9 @@
                 </div>
             </div>
 
-            <!-- ТОВАР 3 -->
- <div class="product-card" id="p3" onclick="handleCardClick(event, 'p3', 'Бездротові навушники F9-5 TWS + PowerBank')">
+            <div class="product-card" id="p3" onclick="handleCardClick(event, 'p3', 'Бездротові навушники F9-5 TWS + PowerBank')">
                 <div class="slider-container">
-                    <div class="slider-track">
+ <div class="slider-track">
                         <div class="slide"><img src="8.jpg" alt="F9-5 1"></div>
                         <div class="slide"><img src="9.jpg" alt="F9-5 2"></div>
                     </div>
@@ -506,7 +500,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно оформления -->
     <div class="modal-overlay" id="orderModal" onclick="closeOrderModal(event)">
         <div class="modal">
             <button class="modal-close" onclick="document.getElementById('orderModal').style.display = 'none'">&times;</button>
@@ -537,7 +530,6 @@
             p3: { current: 0, total: 2 }
         };
 
-        // Переключение слайдера с остановкой всплытия клика, чтобы не открывать модалку
         function moveSlide(productId, direction, event) {
             if (event) event.stopPropagation();
             
@@ -545,7 +537,7 @@
             state.current = (state.current + direction + state.total) % state.total;
             
             const card = document.getElementById(productId);
-const track = card.querySelector('.slider-track');
+            const track = card.querySelector('.slider-track');
             track.style.transform = translateX(-${state.current * 100}%);
             
             const dots = card.querySelectorAll('.dot');
@@ -554,8 +546,7 @@ const track = card.querySelector('.slider-track');
                 else dot.classList.remove('active');
             });
         }
-
-        // Клик по всей карточке открывает форму
+ // Клик по всей площади объявления теперь железно открывает форму заказа
         function handleCardClick(event, productId, productName) {
             if (event.target.classList.contains('slider-arrow') || event.target.classList.contains('dot')) {
                 return; 
@@ -601,7 +592,7 @@ const track = card.querySelector('.slider-track');
             .catch(() => alert('Помилка мережі.'));
         }
 
-        // Скрипт автоматического вывода приветствия по времени суток
+        // Динамічне привітання за точним часом
         function setGreeting() {
             const hour = new Date().getHours();
             let greeting = "Вітаємо";
@@ -622,11 +613,14 @@ const track = card.querySelector('.slider-track');
         window.addEventListener('DOMContentLoaded', () => {
             setGreeting();
             
-            // Удаляем класс покачивания через 4 секунды (время окончания анимации)
+            // Рівно через 4 секунди повністю видаляємо клас анімації, щоб звільнити координати тапа
             setTimeout(() => {
-                document.body.classList.remove('shake-entrance');
+                const grid = document.getElementById('gridBlock');
+                if (grid) grid.classList.remove('shake-entrance');
             }, 4000);
         });
     </script>
 </body>
 </html>
+            background: var(--surface);
+            border-radius: var(--radius-prom);
