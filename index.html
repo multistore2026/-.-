@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -508,6 +508,15 @@
         </div>
     </header>
 
+    <div style="padding: 12px 12px 4px 12px; max-width: 1000px; margin: 0 auto;">
+        <input type="text" id="productSearchInput" oninput="searchProducts()" placeholder="Пошук товарів за назвою..." style="width: 100%; padding: 12px; border: 1px solid var(--border-prom); border-radius: var(--radius-prom); font-size: 14px; outline: none; box-shadow: var(--shadow-prom); background: #fff;">
+    </div>
+
+    <div style="padding: 4px 12px; max-width: 1000px; margin: 0 auto; display: flex; gap: 8px; justify-content: flex-end;">
+        <button onclick="sortProducts('cheap')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Спочатку дешевші</button>
+        <button onclick="sortProducts('expensive')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Спочатку дорожчі</button>
+    </div>
+
     <div class="container" id="gridBlock">
         
         <div class="category-title">Навушники</div>
@@ -654,7 +663,7 @@
                     <p>Сучасна бездротова гарнітура <strong>Nia NB710</strong> створена для тих, хто цінує максимальну свободу рухів, бездоганний звук та комфорт. Спеціальні анатомічні силіконові вставки забезпечують ідеальну посадку, надійне утримання та стабільне носіння навіть під час активних занять спортом чи бігу.</p>
                     <p>Керування музикою та дзвінками здійснюється за допомогою розумних сенсорних панелей на корпусі навушников. Обладовно високоякісним вбудованим мікрофоном для комфортних дзвінків.</p>
                     <p>Стильний і компактний зарядний кейс для зберігання навушников виглядає ефектно, акуратно та легко поміться в кишеню.</p>
-                    <p>Навушники демонструють високу автономність: працюють від 2 до 6 годин у режимі безперервного прослуховування аудіотреків (залежно від рівня гучності) та до 6 годин у розмовному режимі. Завдяки ємному кейсу загальний час роботи досягає близько 20 годин!</p>
+                    <p>Навушники демонструють високу автономність: працюють від 2 до 6 годин у режимі безперервного прослуховування аудіотреків (залежно від рівня гучності) та до 6 годин у розмовному режимі. Завдяки ємному кейсу загальний час работы досягає близько 20 годин!</p>
                 `,
                 specs: [
                     { name: 'Версія Bluetooth', value: 'V5.0 (Сучасне стабільне з\'єднання)' },
@@ -706,7 +715,7 @@
                 htmlDesc: `
                     <p>Наушники <strong>True Wireless F9-5 TWS</strong> виготовлені з якісних та приємних на дотик матеріалів, які не викликають подразнень при тривалому використанні. Завдяки спеціальній анатомічній формі вони надійно фіксуються та не випадають під час активного бігу чи занять у залі.</p>
                     <p>Головна унікальна фішка — багатофункциональний зарядний кейс великої ємності (<strong>1500 mAh</strong>), який можна використовувати як повноцінний <strong>Power Bank</strong> для екстреної підзарядки вашого смартфона чи інших гаджетів!</p>
-                    <p>Кейс оснащений інформативним цифровим LED-дисплеєм, що відображає чіткий відсоток залишкового заряду. Навушники підтримують сенсорне керування, автоматическое увімкнення та сполучення, а також роботу в режимі моно (один навушник).</p>
+                    <p>Кейс оснащений інформативним цифровим LED-дисплеєм, що відображає чіткий відсоток залишкового заряду. Навушники підтримують сенсорне керування, автоматическое увімкнення та сполучення, а также роботу в режимі моно (один навушник).</p>
                 `,
                 specs: [
                     { name: 'Тип підключення', value: 'Бездротові True Wireless' },
@@ -755,6 +764,46 @@
             p3: { current: 0, total: 2 },
             p4: { current: 0, total: 3 }
         };
+
+        // ФУНКЦИЯ СОРТИРОВКИ ТОВАРОВ
+        function sortProducts(criterion) {
+            const grids = document.querySelectorAll('.products-grid');
+            grids.forEach(grid => {
+                const cards = Array.from(grid.querySelectorAll('.product-card'));
+                cards.sort((a, b) => {
+                    const priceA = parseInt(productData[a.id].price.replace(/[^0-9]/g, ''));
+                    const priceB = parseInt(productData[b.id].price.replace(/[^0-9]/g, ''));
+                    return criterion === 'cheap' ? priceA - priceB : priceB - priceA;
+                });
+                cards.forEach(card => grid.appendChild(card));
+            });
+        }
+
+        // ФУНКЦИЯ ПОИСКА ТОВАРОВ
+        function searchProducts() {
+            const query = document.getElementById('productSearchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach(card => {
+                const title = productData[card.id].title.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const grids = document.querySelectorAll('.products-grid');
+            grids.forEach(grid => {
+                const visibleCards = grid.querySelectorAll('.product-card:not([style*="display: none"])');
+                const categoryTitle = grid.previousElementSibling;
+                if (visibleCards.length === 0 && categoryTitle && categoryTitle.classList.contains('category-title')) {
+                    categoryTitle.style.display = 'none';
+                } else if (categoryTitle && categoryTitle.classList.contains('category-title')) {
+                    categoryTitle.style.display = 'block';
+                }
+            });
+        }
 
         function moveSlide(productId, direction, event) {
             if (event) {
@@ -857,8 +906,8 @@
             const phone = document.getElementById('phoneInput').value;
             const delivery = document.getElementById('deliveryInput').value;
             
-            const text = `🔔 **Нове замовлення!**\n\n📦 Товар: ${product}\n👤 Покупець: ${name}\n📞 Телефон: ${phone}\n📍 Доставка: ${delivery}`;
-            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+            const text = `🔔 **Нове замовлення!**\\n\\n📦 Товар: \${product}\\n👤 Покупець: \${name}\\n📞 Телефон: \${phone}\\n📍 Доставка: \${delivery}`;
+            const url = `https://api.telegram.org/bot\${token}/sendMessage?chat_id=\${chatId}&text=\${encodeURIComponent(text)}&parse_mode=Markdown`;
             
             fetch(url)
             .then(res => {
@@ -910,4 +959,8 @@
         });
     </script>
 </body>
-</html>
+</html>"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+print("File written successfully")
