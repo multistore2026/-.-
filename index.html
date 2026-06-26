@@ -654,10 +654,10 @@
                     <p>Сучасна бездротова гарнітура <strong>Nia NB710</strong> створена для тих, хто цінує максимальну свободу рухів, бездоганний звук та комфорт. Спеціальні анатомічні силіконові вставки забезпечують ідеальну посадку, надійне утримання та стабільне носіння навіть під час активних занять спортом чи бігу.</p>
                     <p>Керування музикою та дзвінками здійснюється за допомогою розумних сенсорних панелей на корпусі навушников. Обладнано високоякісним вбудованим мікрофоном для комфортних дзвінків.</p>
                     <p>Стильний і компактний зарядний кейс для зберігання навушников виглядає ефектно, акуратно та легко поміться в кишеню.</p>
-                    <p>Навушники демонструють високу автономність: працюють від 2 до 6 годин у режимі безперервного прослуховування аудіотреків (залежно від рівня гучності) та до 6 годин у розмовному режимі. Завдяки ємному кейсу загальний час роботи досягає близько 20 годин!</p>
+                    <p>Навушники демонструють високу автономність: працюють від 2 до 6 годин у режимі безперервного прослуховування аудіотреків (залежно від рівня гучності) та до 6 годин у розмовному режимі. Завдяки ємному кейсу загальний час работе досягає близько 20 годин!</p>
                 `,
                 specs: [
-                    { name: 'Версія Bluetooth', value: "V5.0 (Сучасне стабільне з'єднання)" },
+                    { name: 'Версія Bluetooth', value: 'V5.0 (Сучасне стабільне з\'єднання)' },
                     { name: 'Сумісність з ОС', value: 'iOS, Android, Windows' },
                     { name: 'Тип керування', value: 'Сенсорне (Touch Control)' },
                     { name: 'Вбудований мікрофон', value: 'Є (в кожному навушнику)' },
@@ -735,17 +735,17 @@
                 `,
                 specs: [
                     { name: 'Тип пристрою', value: 'Портативна бездротова колонка' },
-                    { name: 'Версія Bluetooth', value: "V5.3 (Швидке та стабільне з'єднання)" },
+                    { name: 'Версія Bluetooth', value: 'V5.3 (Швидке та стабільне з\'єднання)' },
                     { name: 'Ефекти підсвічування', value: 'Яскраве багатоколірне RGB підсвічування' },
                     { name: 'Інтерфейси', value: 'Bluetooth, USB, TF-card (MicroSD), AUX' },
                     { name: 'Вбудоване FM-радіо', value: 'Є' },
-                    { name: 'Дальність сигналу', value: 'До 10 метров' },
+                    { name: 'Дальність сигналу', value: 'До 10 метрів' },
                     { name: 'Живлення/Акумулятор', value: 'Вбудований ємний літієвий акумулятор' },
                     { name: 'Час автономної роботи', value: 'До 3-5 годин (залежно від гучності та підсвітки)' },
                     { name: 'Матеріал корпусу', value: 'Захисний ABS-пластик, тканинне обплетення' },
                     { name: 'Колір корпусу', value: 'Black (Чорний)' }
                 ],
-                kit: ['Портативна Bluetooth колонка TG642 (Чорна)', 'Текстильний ремінець для перенесення', 'Зарядний кабель USB', 'Фирмова коробка-упаковка']
+                kit: ['Портативна Bluetooth колонка TG642 (Чорна)', 'Текстильний ремінець для перенесення', 'Зарядний кабель USB', 'Фірмова коробка-упаковка']
             }
         };
 
@@ -796,79 +796,3 @@
             const html = `
                 <div class="ad-card" style="text-align: center;">
                     <div class="ad-gallery">
-                        <img src="${data.img}" alt="${data.title}">
-                    </div>
-                </div>
-                <div class="ad-card">
-                    <h1 class="ad-title">${data.title}</h1>
-                    <div class="ad-price">${data.price}</div>
-                    <div class="availability" style="margin-bottom: 16px;">В наявності</div>
-                    <button class="prom-action-btn" onclick="openOrderModal('${id}', event)">
-                        <span>Купити</span>
-                    </button>
-                </div>
-                <div class="ad-card">
-                    <div class="ad-section-title">Опис</div>
-                    <div class="ad-text">${data.htmlDesc}</div>
-                </div>
-                <div class="ad-card">
-                    <div class="ad-section-title">Характеристики</div>
-                    <table class="spec-table">${specRows}</table>
-                </div>
-                <div class="ad-card">
-                    <div class="ad-section-title">Комплектація</div>
-                    <div class="ad-text"><ul>${kitItems}</ul></div>
-                </div>
-            `;
-
-            document.getElementById('adDynamicContent').innerHTML = html;
-            document.getElementById('productPage').style.display = 'flex';
-            document.getElementById('gridBlock').style.display = 'none';
-        }
-
-        function closeProductPage() {
-            document.getElementById('productPage').style.display = 'none';
-            document.getElementById('gridBlock').style.display = 'block';
-        }
-
-        function openOrderModal(id, event) {
-            if (event) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
-            const data = productData[id];
-            if (!data) return;
-
-            document.getElementById('modalProductTitle').innerText = `Оформлення: ${data.title}`;
-            document.getElementById('productInput').value = data.title;
-            document.getElementById('orderModal').style.display = 'flex';
-        }
-
-        function closeOrderModal(event) {
-            if (event.target.id === 'orderModal') {
-                document.getElementById('orderModal').style.display = 'none';
-            }
-        }
-
-        function sendToTelegram(event) {
-            event.preventDefault();
-            const product = document.getElementById('productInput').value;
-            const name = document.getElementById('nameInput').value;
-            const phone = document.getElementById('phoneInput').value;
-            const delivery = document.getElementById('deliveryInput').value;
-
-            alert(`Замовлення прийнято!\nТовар: ${product}\nІм'я: ${name}\nТелефон: ${phone}\nДоставка: ${delivery}`);
-            document.getElementById('orderModal').style.display = 'none';
-            document.getElementById('tgForm').reset();
-        }
-
-        // Приветствие по времени суток
-        const hours = new Date().getHours();
-        const greetingSpan = document.getElementById('timeGreeting');
-        if (hours >= 5 && hours < 12) greetingSpan.innerText = 'Доброго ранку';
-        else if (hours >= 12 && hours < 18) greetingSpan.innerText = 'Доброго дня';
-        else if (hours >= 18 && hours < 23) greetingSpan.innerText = 'Доброго вечора';
-        else greetingSpan.innerText = 'Доброї ночі';
-    </script>
-</body>
-</html>
