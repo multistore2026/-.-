@@ -620,12 +620,16 @@
             <div class="product-card" id="p5">
                 <div class="slider-container">
                     <div class="slider-track">
-                        <div class="slide"><img src="tg657_black.jpg" alt="TG657"></div>
+                        <div class="slide"><img src="13.jpg" alt="TG657 1"></div>
+                        <div class="slide"><img src="14.jpg" alt="TG657 2"></div>
+                        <div class="slide"><img src="15.jpg" alt="TG657 3"></div>
                     </div>
                     <button class="slider-arrow arrow-left" onclick="moveSlide('p5', -1, event)">&#10094;</button>
                     <button class="slider-arrow arrow-right" onclick="moveSlide('p5', 1, event)">&#10095;</button>
                     <div class="slider-dots">
                         <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -639,12 +643,16 @@
             <div class="product-card" id="p6">
                 <div class="slider-container">
                     <div class="slider-track">
-                        <div class="slide"><img src="tg658_black.jpg" alt="TG658"></div>
+                        <div class="slide"><img src="16.jpg" alt="TG658 1"></div>
+                        <div class="slide"><img src="17.jpg" alt="TG658 2"></div>
+                        <div class="slide"><img src="18.jpg" alt="TG658 3"></div>
                     </div>
                     <button class="slider-arrow arrow-left" onclick="moveSlide('p6', -1, event)">&#10094;</button>
                     <button class="slider-arrow arrow-right" onclick="moveSlide('p6', 1, event)">&#10095;</button>
                     <div class="slider-dots">
                         <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -658,12 +666,16 @@
             <div class="product-card" id="p7">
                 <div class="slider-container">
                     <div class="slider-track">
-                        <div class="slide"><img src="tg652_blue.jpg" alt="TG652"></div>
+                        <div class="slide"><img src="19.jpg" alt="TG652 1"></div>
+                        <div class="slide"><img src="20.jpg" alt="TG652 2"></div>
+                        <div class="slide"><img src="21.jpg" alt="TG652 3"></div>
                     </div>
                     <button class="slider-arrow arrow-left" onclick="moveSlide('p7', -1, event)">&#10094;</button>
                     <button class="slider-arrow arrow-right" onclick="moveSlide('p7', 1, event)">&#10095;</button>
                     <div class="slider-dots">
                         <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -711,7 +723,7 @@
                     <label>Спосіб доставки</label>
                     <select id="deliveryType" class="form-control" onchange="toggleDeliveryPlaceholder()" required>
                         <option value="Нова Пошта">Нова Пошта</option>
-                        <option value="Укрпошта">Укрпочта</option>
+                        <option value="Укрпошта">Укрпошта</option>
                     </select>
                 </div>
                 
@@ -797,7 +809,7 @@
             },
             p5: {
                 title: 'Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна',
-                images: ['tg657_black.jpg'],
+                images: ['13.jpg', '14.jpg', '15.jpg'],
                 price: '649 ₴',
                 htmlDesc: `
                     <p><strong>TG657</strong> — це компактна бездротова акустична система з потужним звучанням та ефектним круговим <strong>RGB підсвічуванням</strong>. Вона ідеально підходить для створення атмосфери вдома, на вечірці чи під час відпочинку на природі.</p>
@@ -814,7 +826,7 @@
             },
             p6: {
                 title: 'Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна',
-                images: ['tg658_black.jpg'],
+                images: ['16.jpg', '17.jpg', '18.jpg'],
                 price: '479 ₴',
                 htmlDesc: `
                     <p><strong>TG658</strong> — це потужна бездротова колонка на <strong>8W</strong>, що поєднує в собі насичений звук та яскраве візуальне оформлення. Динамічна багатоколірна RGB підсвітка заповнює простір навколо та синхронізується з вашими улюбленими треками.</p>
@@ -831,7 +843,7 @@
             },
             p7: {
                 title: 'Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя',
-                images: ['tg652_blue.jpg'],
+                images: ['19.jpg', '20.jpg', '21.jpg'],
                 price: '479 ₴',
                 htmlDesc: `
                     <p><strong>TG652</strong> — компактна портативна акустична система потужністю <strong>5W</strong>, виготовлена в яскравому синьому корпусі з міцним тканинним ремінцем для зручного носіння на руці або рюкзаку.</p>
@@ -853,9 +865,9 @@
             p2: { current: 0, total: 3 },
             p3: { current: 0, total: 2 },
             p4: { current: 0, total: 3 },
-            p5: { current: 0, total: 1 },
-            p6: { current: 0, total: 1 },
-            p7: { current: 0, total: 1 },
+            p5: { current: 0, total: 3 },
+            p6: { current: 0, total: 3 },
+            p7: { current: 0, total: 3 },
             adSlider: { current: 0, total: 0 }
         };
 
@@ -958,7 +970,7 @@
 
                 <div class="ad-card">
                     <div class="ad-section-title">Технічні характеристики</div>
-                    <table class="spec-table">${specRows}</table>
+                    <div class="ad-text"><table class="spec-table">${specRows}</table></div>
                 </div>
 
                 <div class="ad-card">
@@ -998,7 +1010,7 @@
             const phone = document.getElementById('phoneInput').value;
             const deliveryType = document.getElementById('deliveryType').value;
             const deliveryDetails = document.getElementById('deliveryInput').value;
-            
+
             const text = `🔔 **Нове замовлення!**\n\n📦 Товар: ${product}\n👤 Покупець: ${name}\n📞 Телефон: ${phone}\n🚚 Служба: ${deliveryType}\n📍 Адреса/Відділення: ${deliveryDetails}`;
             const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
             
@@ -1016,7 +1028,7 @@
         function toggleDeliveryPlaceholder() {
             const type = document.getElementById('deliveryType').value;
             const input = document.getElementById('deliveryInput');
-            if (type === 'Укрпочта') {
+            if (type === 'Укрпошта') {
                 input.placeholder = 'Наприклад: Львів, індекс 79000, вул. Центральна 5';
             } else {
                 input.placeholder = 'Наприклад: Київ, Відділення №15';
