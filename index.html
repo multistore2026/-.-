@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MULTI.STORE — Интернет-магазин электроники</title>
+    <title>MULTI.STORE — Інтернет-магазин електроніки</title>
     <style>
         :root {
             --bg-main: #f4f6f9;
@@ -88,6 +88,12 @@
             font-size: 13px;
             font-weight: 600;
             border: 1px solid var(--border-prom);
+        }
+
+        .flag-icon {
+            font-size: 16px;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .container {
@@ -264,7 +270,7 @@
             background: rgba(0, 160, 70, 0.05);
         }
 
-        /* СТРАНИЦА ОБЪЯВЛЕНИЯ */
+        /* СТОРІНКА ОГОЛОШЕННЯ */
         .full-page-ad {
             position: fixed;
             top: 0;
@@ -328,7 +334,7 @@
             margin-bottom: 12px;
         }
 
-        /* Окно приближения фото (Zoom) */
+        /* Вікно наближення фото (Zoom) */
         .zoom-overlay {
             position: fixed;
             top: 0;
@@ -422,7 +428,7 @@
             font-weight: 500;
         }
 
-        /* ФОРМА ЗАКАЗА */
+        /* ФОРМА ЗАМОВЛЕННЯ */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -498,22 +504,22 @@
     <header>
         <div class="logo">MULTI<span>.STORE</span></div>
         <div class="greeting-block">
-            <span id="timeGreeting">Приветствуем</span>
+            <span id="timeGreeting">Вітаємо</span> <span class="flag-icon">🇺🇦</span>
         </div>
     </header>
 
     <div style="padding: 12px 12px 4px 12px; max-width: 1000px; margin: 0 auto;">
-        <input type="text" id="productSearchInput" oninput="searchProducts()" placeholder="Поиск товаров по названию..." style="width: 100%; padding: 12px; border: 1px solid var(--border-prom); border-radius: var(--radius-prom); font-size: 14px; outline: none; box-shadow: var(--shadow-prom); background: #fff;">
+        <input type="text" id="productSearchInput" oninput="searchProducts()" placeholder="Пошук товарів за назвою..." style="width: 100%; padding: 12px; border: 1px solid var(--border-prom); border-radius: var(--radius-prom); font-size: 14px; outline: none; box-shadow: var(--shadow-prom); background: #fff;">
     </div>
 
     <div style="padding: 4px 12px; max-width: 1000px; margin: 0 auto; display: flex; gap: 8px; justify-content: flex-end;">
-        <button onclick="sortProducts('cheap')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Сначала дешевые</button>
-        <button onclick="sortProducts('expensive')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Сначала дорогие</button>
+        <button onclick="sortProducts('cheap')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Спочатку дешевші</button>
+        <button onclick="sortProducts('expensive')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Спочатку дорожчі</button>
     </div>
 
     <div class="container" id="gridBlock">
         
-        <div class="category-title">Наушники</div>
+        <div class="category-title">Навушники</div>
         <div class="products-grid">
 
             <div class="product-card" id="p1">
@@ -532,10 +538,10 @@
                     </div>
                 </div>
                 <div class="product-info">
-                    <div class="price-block"><span class="current-price">699 ₴</span></div>
-                    <div class="product-title">Беспроводные наушники Nia NB710</div>
-                    <div class="availability">В наличии</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Беспроводные наушники Nia NB710')">Купить</button>
+                    <div class="price-block"><span class="current-price">899 ₴</span></div>
+                    <div class="product-title">Бездротові навушники Nia NB710</div>
+                    <div class="availability">В наявності</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові навушники Nia NB710')">Купити</button>
                 </div>
             </div>
 
@@ -556,9 +562,9 @@
                 </div>
                 <div class="product-info">
                     <div class="price-block"><span class="current-price">500 ₴</span></div>
-                    <div class="product-title">Беспроводные наушники Air13 Pro Bluetooth сенсорные</div>
-                    <div class="availability">В наличии</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Беспроводные наушники Air13 Pro Bluetooth сенсорные')">Купить</button>
+                    <div class="product-title">Бездротові навушники Air13 Pro Bluetooth сенсорні</div>
+                    <div class="availability">В наявності</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові навушники Air13 Pro Bluetooth сенсорні')">Купити</button>
                 </div>
             </div>
 
@@ -577,9 +583,9 @@
                 </div>
                 <div class="product-info">
                     <div class="price-block"><span class="current-price">350 ₴</span></div>
-                    <div class="product-title">Беспроводные bluetooth наушники True Wireless F9-5 TWS + PowerBank</div>
-                    <div class="availability">В наличии</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Беспроводные bluetooth наушники True Wireless F9-5 TWS + PowerBank')">Купить</button>
+                    <div class="product-title">Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank</div>
+                    <div class="availability">В наявності</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank')">Купити</button>
                 </div>
             </div>
 
@@ -605,9 +611,9 @@
                 </div>
                 <div class="product-info">
                     <div class="price-block"><span class="current-price">700 ₴</span></div>
-                    <div class="product-title">Портативная Bluetooth колонка TG642 с RGB подсветкой</div>
-                    <div class="availability">В наличии</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативная Bluetooth колонка TG642 с RGB подсветкой')">Купить</button>
+                    <div class="product-title">Портативна Bluetooth колонка TG642 з RGB підсвіткою</div>
+                    <div class="availability">В наявності</div>
+                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG642 з RGB підсвіткою')">Купити</button>
                 </div>
             </div>
 
@@ -618,7 +624,7 @@
     <div class="full-page-ad" id="productPage">
         <div class="ad-header">
             <button class="back-btn" onclick="closeProductPage()">&larr;</button>
-            <div style="font-weight: 700; font-size: 15px;">Карточка товара</div>
+            <div style="font-weight: 700; font-size: 15px;">Картка товару</div>
         </div>
         <div class="ad-content" id="adDynamicContent"></div>
     </div>
@@ -630,37 +636,37 @@
     <div class="modal-overlay" id="orderModal" onclick="closeOrderModal(event)">
         <div class="modal">
             <button class="modal-close" onclick="document.getElementById('orderModal').style.display = 'none'">&times;</button>
-            <div class="modal-title" id="modalProductTitle">Оформление заказа</div>
+            <div class="modal-title" id="modalProductTitle">Оформлення замовлення</div>
             <form id="tgForm" onsubmit="sendToTelegram(event)">
                 <input type="hidden" id="productInput">
                 
                 <div class="form-group">
-                    <label>Ваше имя и фамилия</label>
-                    <input type="text" id="nameInput" class="form-control" placeholder="Иван Иванов" required>
+                    <label>Ваше ім'я та прізвище</label>
+                    <input type="text" id="nameInput" class="form-control" placeholder="Іван Іванов" required>
                 </div>
                 
                 <div class="form-group">
-                    <label>Номер телефона</label>
+                    <label>Номер телефону</label>
                     <input type="tel" id="phoneInput" class="form-control" placeholder="+380" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Способ доставки</label>
+                    <label>Спосіб доставки</label>
                     <select id="deliveryType" class="form-control" onchange="toggleDeliveryPlaceholder()" required>
-                        <option value="Новая Почта">Новая Почта</option>
-                        <option value="Укрпочта">Укрпочта</option>
+                        <option value="Нова Пошта">Нова Пошта</option>
+                        <option value="Укрпошта">Укрпочта</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label>Город и номер/адрес отделения</label>
-                    <input type="text" id="deliveryInput" class="form-control" placeholder="Например: Киев, Отделение №15" required>
+                    <label>Місто та номер/адреса відділення</label>
+                    <input type="text" id="deliveryInput" class="form-control" placeholder="Наприклад: Київ, Відділення №15" required>
                     <small style="color: var(--text-muted); font-size: 11px; display: block; margin-top: 4px;">
-                        Пожалуйста, укажите ваш город и номер отделения, куда отправить заказ.
+                        Будь ласка, вкажіть ваше місто та номер відділення, куди відправити замовлення.
                     </small>
                 </div>
                 
-                <button type="submit" class="submit-btn" style="background: var(--prom-green); color: #fff; width: 100%; padding: 12px; border: none; border-radius: 4px; font-weight: 700; margin-top: 10px; cursor: pointer;">Подтвердить заказ</button>
+                <button type="submit" class="submit-btn" style="background: var(--prom-green); color: #fff; width: 100%; padding: 12px; border: none; border-radius: 4px; font-weight: 700; margin-top: 10px; cursor: pointer;">Підтвердити замовлення</button>
             </form>
         </div>
     </div>
@@ -668,69 +674,69 @@
     <script>
         const productData = {
             p1: {
-                title: 'Беспроводные наушники Nia NB710',
+                title: 'Бездротові навушники Nia NB710',
                 images: ['17824816315674350906478093768518.jpg', 'gkrvarevrnkvy (1).jpg', 'krvatravpavipk (1).jpg'],
-                price: '699 ₴',
+                price: '899 ₴',
                 htmlDesc: `
-                    <p>Современная беспроводная гарнитура <strong>Nia NB710</strong> создана для тех, кто ценит максимальную свободу движений, безупречный звук и комфорт. Специальные анатомические силиконовые вставки обеспечивают идеальную посадку, надежное удержание и стабильное ношение даже во время активных занятий спортом или бега.</p>
-                    <p>Управление музыкой и звонками осуществляется при помощи умных сенсорных панелей на корпусе наушников. Оснащены высококачественным встроенным микрофоном для комфортных звонков.</p>
-                    <p>Стильный и компактный зарядный кейс для хранения наушников выглядит эффектно, аккуратно и легко помещается в карман.</p>
+                    <p>Сучасна бездротова гарнітура <strong>Nia NB710</strong> створена для тих, хто цінує максимальну свободу рухів, бездоганний звук та комфорт. Спеціальні анатомічні силіконові вставки забезпечують ідеальну посадку, надійне утримання та стабільне носіння навіть під час активних занять спортом чи бігу.</p>
+                    <p>Керування музикою та дзвінками здійснюється за допомогою розумних сенсорних панелей на корпусі навушників. Оснащені високоякісним вбудованим мікрофоном для комфортних дзвінків.</p>
+                    <p>Стильний і компактний зарядний кейс для зберігання навушників виглядає ефектно, акуратно і легко поміщається в кишеню.</p>
                 `,
                 specs: [
-                    { name: 'Версия Bluetooth', value: 'V5.0 (Стабильное соединение)' },
-                    { name: 'Совместимость с ОС', value: 'iOS, Android, Windows' },
-                    { name: 'Тип управления', value: 'Сенсорное (Touch Control)' },
-                    { name: 'Встроенный микрофон', value: 'Есть (в каждом наушнике)' },
+                    { name: 'Версія Bluetooth', value: 'V5.0 (Стабільне з\'єднання)' },
+                    { name: 'Сумісність з ОС', value: 'iOS, Android, Windows' },
+                    { name: 'Тип керування', value: 'Сенсорне (Touch Control)' },
+                    { name: 'Вбудований мікрофон', value: 'Є (в кожному навушнику)' },
                     { name: 'Порт зарядки кейса', value: 'Type-C' }
                 ],
-                kit: ['Беспроводные наушники NIA NB710', 'Зарядный кейс', 'Комплект силиконовых амбушюр', 'Кабель Type-C', 'Инструкция']
+                kit: ['Бездротові навушники NIA NB710', 'Зарядний кейс', 'Комплект силіконових амбушюр', 'Кабель Type-C', 'Інструкція']
             },
             p2: {
-                title: 'Беспроводные наушники Air13 Pro Bluetooth сенсорные',
+                title: 'Бездротові навушники Air13 Pro Bluetooth сенсорні',
                 images: ['e4kcfivaiukcfvafvi.jpg', 'kcfyafaukafvy.jpg', 'kcvaipeukcafiv.jpg'],
                 price: '500 ₴',
                 htmlDesc: `
-                    <p><strong>Air13 Pro</strong> — это выдающиеся Bluetooth-наушники, созданные для тех, кто ценит качество и комфорт во время прослушивания музыки или общения по телефону. Изготовлены из высококачественных материалов.</p>
-                    <p>Наушники имеют класс защиты <strong>IPX5</strong> от воды и пота. Встроенный HD-микрофон обеспечивает чёткую связь во время звонков, позволяя общаться без помех.</p>
+                    <p><strong>Air13 Pro</strong> — це видатні Bluetooth-навушники, створені для тих, хто цінує якість та комфорт під час прослуховування музики або спілкування телефоном. Виготовлені з високоякісних матеріалів.</p>
+                    <p>Навушники мають клас захисту <strong>IPX5</strong> від води та поту. Вбудований HD-мікрофон забезпечує чіткий зв'язок під час дзвінків, дозволяя спілкуватися без перешкод.</p>
                 `,
                 specs: [
-                    { name: 'Тип устройства', value: 'Беспроводные TWS наушники' },
-                    { name: 'Версия Bluetooth', value: 'V5.3' },
-                    { name: 'Дисплей на корпусе', value: 'Есть (Светодиодный LED)' },
-                    { name: 'Влагозащита', value: 'IPX5 (От пота и брызг)' }
+                    { name: 'Тип пристрою', value: 'Бездротові TWS навушники' },
+                    { name: 'Версія Bluetooth', value: 'V5.3' },
+                    { name: 'Дисплей на корпусі', value: 'Є (Світлодіодний LED)' },
+                    { name: 'Вологозахист', value: 'IPX5 (Від поту та бризок)' }
                 ],
-                kit: ['Беспроводные наушники Air13 Pro', 'Зарядный бокс с LED-дисплеем', 'Зарядный кабель USB', 'Фирменная коробка']
+                kit: ['Бездротові навушники Air13 Pro', 'Зарядний бокс з LED-дисплеєм', 'Зарядний кабель USB', 'Фірмова коробка']
             },
             p3: {
-                title: 'Беспроводные bluetooth наушники True Wireless F9-5 TWS + PowerBank',
+                title: 'Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank',
                 images: ['8.jpg', '9.jpg'],
                 price: '350 ₴',
                 htmlDesc: `
-                    <p>Наушники <strong>True Wireless F9-5 TWS</strong> изготовлены из качественных материалов. Главная уникальная фишка — многофункциональный зарядный кейс большой емкости (<strong>1500 mAh</strong>), который можно использовать как полноценный <strong>Power Bank</strong> для экстренной подзарядки смартфона!</p>
+                    <p>Навушники <strong>True Wireless F9-5 TWS</strong> виготовлені з якісних матеріалів. Головна унікальна фішка — багатофункціональний зарядний кейс великої ємності (<strong>1500 mAh</strong>), який можна використовувати як повноцінний <strong>Power Bank</strong> для екстреної підзарядки смартфона!</p>
                 `,
                 specs: [
-                    { name: 'Тип подключения', value: 'Беспроводные True Wireless' },
-                    { name: 'Версия Bluetooth', value: 'V5.0' },
-                    { name: 'Функция Power Bank', value: 'Есть (Емкость кейса 1500 mAh)' },
-                    { name: 'Дисплей кейса', value: 'Цифровой LED индикатор заряда' }
+                    { name: 'Тип підключення', value: 'Бездротові True Wireless' },
+                    { name: 'Версія Bluetooth', value: 'V5.0' },
+                    { name: 'Функція Power Bank', value: 'Є (Ємність кейса 1500 mAh)' },
+                    { name: 'Дисплей кейса', value: 'Цифровий LED індикатор заряду' }
                 ],
-                kit: ['Наушники True Wireless F9-5 TWS', 'Кейс-павербанк (1500 mAh)', 'Кабель USB - MicroUSB', 'Запасные амбушюры (2 пары)', 'Инструкция']
+                kit: ['Навушники True Wireless F9-5 TWS', 'Кейс-павербанк (1500 mAh)', 'Кабель USB - MicroUSB', 'Запасні амбушюри (2 пари)', 'Інструкція']
             },
             p4: {
-                title: 'Портативная Bluetooth колонка TG642 с RGB подсветкой',
+                title: 'Портативна Bluetooth колонка TG642 з RGB підсвіткою',
                 images: ['10.jpg', '11.jpg', '12.jpg'],
                 price: '700 ₴',
                 htmlDesc: `
-                    <p><strong>TG642</strong> — это стильная и мощная портативная Bluetooth колонка. Главной особенностью модели является динамическая **RGB подсветка**, которая создает праздничную атмосферу и адаптируется под ритм вашей музыки.</p>
-                    <p>Благодаря прочному ремешку в комплекте, колонку максимально удобно брать с собой на прогулки. Поддерживает воспроизведение через Bluetooth, карты MicroSD, USB-флешки, а также имеет встроенное FM-радио.</p>
+                    <p><strong>TG642</strong> — це стильна та потужна портативна Bluetooth колонка. Головною особливістю моделі є динамічна **RGB підсвітка**, яка створює святкову атмосферу та адаптується під ритм вашої музики.</p>
+                    <p>Завдяки міцному ремінцю в комплекті, колонку максимально зручно брати з собою на прогулянки. Підтримує відтворення через Bluetooth, карти MicroSD, USB-флешки, а також має вбудоване FM-радіо.</p>
                 `,
                 specs: [
-                    { name: 'Тип устройства', value: 'Портативная беспроводная колонка' },
-                    { name: 'Версия Bluetooth', value: 'V5.3' },
-                    { name: 'Подсветка', value: 'Яркая многоцветная RGB' },
-                    { name: 'Интерфейсы', value: 'Bluetooth, USB, TF-card, AUX, FM' }
+                    { name: 'Тип пристрою', value: 'Портативна бездротова колонка' },
+                    { name: 'Версія Bluetooth', value: 'V5.3' },
+                    { name: 'Підсвітка', value: 'Яскрава багатоколірна RGB' },
+                    { name: 'Інтерфейси', value: 'Bluetooth, USB, TF-card, AUX, FM' }
                 ],
-                kit: ['Портативная колонка TG642', 'Ремешок для переноски', 'Зарядный кабель USB', 'Коробка']
+                kit: ['Портативна колонка TG642', 'Ремінець для перенесення', 'Зарядний кабель USB', 'Коробка']
             }
         };
 
@@ -828,23 +834,23 @@
                     <div style="padding: 0 16px;">
                         <div class="ad-title" style="margin-top:12px;">${data.title}</div>
                         <div class="ad-price">${data.price}</div>
-                        <div class="availability" style="justify-content: center; font-size: 13px; margin-bottom: 16px;">В наличии</div>
-                        <button class="prom-action-btn" onclick="openOrderModal('${data.title.replace(/'/g, "\\'")}')">Купить</button>
+                        <div class="availability" style="justify-content: center; font-size: 13px; margin-bottom: 16px;">В наявності</div>
+                        <button class="prom-action-btn" onclick="openOrderModal('${data.title.replace(/'/g, "\\'")}')">Купити</button>
                     </div>
                 </div>
 
                 <div class="ad-card">
-                    <div class="ad-section-title">Описание товара</div>
+                    <div class="ad-section-title">Опис товару</div>
                     <div class="ad-text">${data.htmlDesc}</div>
                 </div>
 
                 <div class="ad-card">
-                    <div class="ad-section-title">Технические характеристики</div>
+                    <div class="ad-section-title">Технічні характеристики</div>
                     <table class="spec-table">${specRows}</table>
                 </div>
 
                 <div class="ad-card">
-                    <div class="ad-section-title">Комплектация заказа</div>
+                    <div class="ad-section-title">Комплектація замовлення</div>
                     <div class="ad-text"><ul>${kitItems}</ul></div>
                 </div>
             `;
@@ -881,37 +887,37 @@
             const deliveryType = document.getElementById('deliveryType').value;
             const deliveryDetails = document.getElementById('deliveryInput').value;
             
-            const text = `🔔 **Новый заказ!**\n\n📦 Товар: ${product}\n👤 Покупатель: ${name}\n📞 Телефон: ${phone}\n🚚 Служба: ${deliveryType}\n📍 Адрес/Отделение: ${deliveryDetails}`;
+            const text = `🔔 **Нове замовлення!**\n\n📦 Товар: ${product}\n👤 Покупець: ${name}\n📞 Телефон: ${phone}\n🚚 Служба: ${deliveryType}\n📍 Адреса/Відділення: ${deliveryDetails}`;
             const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
             
             fetch(url).then(res => {
                 if(res.ok) {
-                    alert('Спасибо! Ваш заказ успешно принят.');
+                    alert('Дякуємо! Ваше замовлення успішно прийнято.');
                     document.getElementById('orderModal').style.display = 'none';
                     document.getElementById('tgForm').reset();
                 } else {
-                    alert('Ошибка отправки.');
+                    alert('Помилка відправки.');
                 }
-            }).catch(() => alert('Ошибка сети.'));
+            }).catch(() => alert('Помилка мережі.'));
         }
 
         function toggleDeliveryPlaceholder() {
             const type = document.getElementById('deliveryType').value;
             const input = document.getElementById('deliveryInput');
             if (type === 'Укрпочта') {
-                input.placeholder = 'Например: Львов, индекс 79000, ул. Центральная 5';
+                input.placeholder = 'Наприклад: Львів, індекс 79000, вул. Центральна 5';
             } else {
-                input.placeholder = 'Например: Киев, Отделение №15';
+                input.placeholder = 'Наприклад: Київ, Відділення №15';
             }
         }
 
         function setGreeting() {
             const hour = new Date().getHours();
-            let greeting = "Приветствуем";
-            if (hour >= 4 && hour < 12) greeting = "Доброе утро";
-            else if (hour >= 12 && hour < 18) greeting = "Добрый день";
-            else if (hour >= 18 && hour < 22) greeting = "Добрый вечер";
-            else greeting = "Доброй ночи";
+            let greeting = "Вітаємо";
+            if (hour >= 4 && hour < 12) greeting = "Доброго ранку";
+            else if (hour >= 12 && hour < 18) greeting = "Доброго дня";
+            else if (hour >= 18 && hour < 22) greeting = "Доброго вечора";
+            else greeting = "Доброї ночі";
             document.getElementById('timeGreeting').innerText = greeting;
         }
 
@@ -935,4 +941,5 @@
         });
     </script>
 </body>
+</html>
 </html>
