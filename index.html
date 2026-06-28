@@ -19,24 +19,6 @@
             --shadow-prom: 0 1px 4px rgba(0, 0, 0, 0.05);
         }
 
-        @keyframes entranceShake {
-            0% { transform: translateX(0); }
-            10% { transform: translateX(-10px); }
-            20% { transform: translateX(10px); }
-            30% { transform: translateX(-8px); }
-            40% { transform: translateX(8px); }
-            50% { transform: translateX(-5px); }
-            60% { transform: translateX(5px); }
-            70% { transform: translateX(-3px); }
-            80% { transform: translateX(3px); }
-            90% { transform: translateX(-1px); }
-            100% { transform: translateX(0); }
-        }
-
-        .shake-entrance {
-            animation: entranceShake 4s ease-in-out;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -100,6 +82,44 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 12px;
+        }
+
+        /* Меню категорій (Вкладки) */
+        .tabs-container {
+            max-width: 1000px;
+            margin: 8px auto;
+            padding: 0 12px;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: #fff;
+            border: 1px solid var(--border-prom);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--prom-purple);
+            color: #fff;
+            border-color: var(--prom-purple);
+        }
+
+        .category-block {
+            display: block;
         }
 
         .category-title {
@@ -334,7 +354,7 @@
             margin-bottom: 12px;
         }
 
-        /* Вікно наближення фото (Zoom) */
+        /* Вікно наближення фото */
         .zoom-overlay {
             position: fixed;
             top: 0;
@@ -512,6 +532,13 @@
         <input type="text" id="productSearchInput" oninput="searchProducts()" placeholder="Пошук товарів за назвою..." style="width: 100%; padding: 12px; border: 1px solid var(--border-prom); border-radius: var(--radius-prom); font-size: 14px; outline: none; box-shadow: var(--shadow-prom); background: #fff;">
     </div>
 
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="switchCategory('all', this)">Всі товари</button>
+        <button class="tab-btn" onclick="switchCategory('headphones', this)">Навушники</button>
+        <button class="tab-btn" onclick="switchCategory('speakers', this)">Колонки</button>
+        <button class="tab-btn" onclick="switchCategory('powerbanks', this)">Повербанки</button>
+    </div>
+
     <div style="padding: 4px 12px; max-width: 1000px; margin: 0 auto; display: flex; gap: 8px; justify-content: flex-end;">
         <button onclick="sortProducts('cheap')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Спочатку дешевші</button>
         <button onclick="sortProducts('expensive')" style="padding: 6px 12px; border: 1px solid var(--border-prom); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dark);">Спочатку дорожчі</button>
@@ -519,316 +546,227 @@
 
     <div class="container" id="gridBlock">
         
-        <div class="category-title">Навушники</div>
-        <div class="products-grid">
-
-            <div class="product-card" id="p1">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="17824816315674350906478093768518.jpg" alt="Nia 1"></div>
-                        <div class="slide"><img src="gkrvarevrnkvy (1).jpg" alt="Nia 2"></div>
-                        <div class="slide"><img src="krvatravpavipk (1).jpg" alt="Nia 3"></div>
+        <div class="category-block" id="cat-headphones">
+            <div class="category-title">Навушники</div>
+            <div class="products-grid">
+                <div class="product-card" id="p1">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="17824816315674350906478093768518.jpg" alt="Nia 1"></div>
+                            <div class="slide"><img src="gkrvarevrnkvy (1).jpg" alt="Nia 2"></div>
+                            <div class="slide"><img src="krvatravpavipk (1).jpg" alt="Nia 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p1', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p1', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
                     </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p1', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p1', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">899 ₴</span></div>
+                        <div class="product-title">Бездротові навушники Nia NB710</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові навушники Nia NB710')">Купити</button>
                     </div>
                 </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">899 ₴</span></div>
-                    <div class="product-title">Бездротові навушники Nia NB710</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові навушники Nia NB710')">Купити</button>
+
+                <div class="product-card" id="p2">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="e4kcfivaiukcfvafvi.jpg" alt="Air 13 1"></div>
+                            <div class="slide"><img src="kcfyafaukafvy.jpg" alt="Air 13 2"></div>
+                            <div class="slide"><img src="kcvaipeukcafiv.jpg" alt="Air 13 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p2', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p2', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">500 ₴</span></div>
+                        <div class="product-title">Бездротові навушники Air13 Pro Bluetooth сенсорні</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові навушники Air13 Pro Bluetooth сенсорні')">Купити</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="p3">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="8.jpg" alt="F9-5 1"></div>
+                            <div class="slide"><img src="9.jpg" alt="F9-5 2"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p3', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p3', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">350 ₴</span></div>
+                        <div class="product-title">Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank')">Купити</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="product-card" id="p2">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="e4kcfivaiukcfvafvi.jpg" alt="Air 13 1"></div>
-                        <div class="slide"><img src="kcfyafaukafvy.jpg" alt="Air 13 2"></div>
-                        <div class="slide"><img src="kcvaipeukcafiv.jpg" alt="Air 13 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p2', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p2', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">500 ₴</span></div>
-                    <div class="product-title">Бездротові навушники Air13 Pro Bluetooth сенсорні</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові навушники Air13 Pro Bluetooth сенсорні')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p3">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="8.jpg" alt="F9-5 1"></div>
-                        <div class="slide"><img src="9.jpg" alt="F9-5 2"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p3', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p3', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">350 ₴</span></div>
-                    <div class="product-title">Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank')">Купити</button>
-                </div>
-            </div>
-
         </div>
 
-        <div class="category-title">Колонки</div>
-        <div class="products-grid">
-
-            <div class="product-card" id="p4">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="10.jpg" alt="TG642 1"></div>
-                        <div class="slide"><img src="11.jpg" alt="TG642 2"></div>
-                        <div class="slide"><img src="12.jpg" alt="TG642 3"></div>
+        <div class="category-block" id="cat-speakers">
+            <div class="category-title">Колонки</div>
+            <div class="products-grid">
+                <div class="product-card" id="p4">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="10.jpg" alt="TG642 1"></div>
+                            <div class="slide"><img src="11.jpg" alt="TG642 2"></div>
+                            <div class="slide"><img src="12.jpg" alt="TG642 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p4', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p4', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
                     </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p4', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p4', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">700 ₴</span></div>
+                        <div class="product-title">Портативна Bluetooth колонка TG642 з RGB підсвіткою</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG642 з RGB підсвіткою')">Купити</button>
                     </div>
                 </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">700 ₴</span></div>
-                    <div class="product-title">Портативна Bluetooth колонка TG642 з RGB підсвіткою</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG642 з RGB підсвіткою')">Купити</button>
+
+                <div class="product-card" id="p5">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="13.jpg" alt="TG657 1"></div>
+                            <div class="slide"><img src="14.jpg" alt="TG657 2"></div>
+                            <div class="slide"><img src="15.jpg" alt="TG657 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p5', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p5', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">649 ₴</span></div>
+                        <div class="product-title">Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна')">Купити</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="p6">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="16.jpg" alt="TG658 1"></div>
+                            <div class="slide"><img src="17.jpg" alt="TG658 2"></div>
+                            <div class="slide"><img src="18.jpg" alt="TG658 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p6', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p6', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">479 ₴</span></div>
+                        <div class="product-title">Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна')">Купити</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="p7">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="19.jpg" alt="TG652 1"></div>
+                            <div class="slide"><img src="20.jpg" alt="TG652 2"></div>
+                            <div class="slide"><img src="21.jpg" alt="TG652 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p7', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p7', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">479 ₴</span></div>
+                        <div class="product-title">Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя')">Купити</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="product-card" id="p5">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="13.jpg" alt="TG657 1"></div>
-                        <div class="slide"><img src="14.jpg" alt="TG657 2"></div>
-                        <div class="slide"><img src="15.jpg" alt="TG657 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p5', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p5', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">649 ₴</span></div>
-                    <div class="product-title">Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p6">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="16.jpg" alt="TG658 1"></div>
-                        <div class="slide"><img src="17.jpg" alt="TG658 2"></div>
-                        <div class="slide"><img src="18.jpg" alt="TG658 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p6', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p6', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">479 ₴</span></div>
-                    <div class="product-title">Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p7">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="19.jpg" alt="TG652 1"></div>
-                        <div class="slide"><img src="20.jpg" alt="TG652 2"></div>
-                        <div class="slide"><img src="21.jpg" alt="TG652 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p7', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p7', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">479 ₴</span></div>
-                    <div class="product-title">Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя')">Купити</button>
-                </div>
-            </div>
-
         </div>
 
-        <div class="category-title">Повербанки</div>
-        <div class="products-grid">
-
-            <div class="product-card" id="p8">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="22.jpg" alt="Solar 20000 1"></div>
-                        <div class="slide"><img src="23.jpg" alt="Solar 20000 2"></div>
-                        <div class="slide"><img src="24.jpg" alt="Solar 20000 3"></div>
+        <div class="category-block" id="cat-powerbanks">
+            <div class="category-title">Повербанки</div>
+            <div class="products-grid">
+                <div class="product-card" id="p8">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="22.jpg" alt="Solar 20000 1"></div>
+                            <div class="slide"><img src="23.jpg" alt="Solar 20000 2"></div>
+                            <div class="slide"><img src="24.jpg" alt="Solar 20000 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p8', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p8', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
                     </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p8', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p8', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">340 ₴</span></div>
+                        <div class="product-title">УМБ Power Bank Solar 20000 mAh з сонячною панеллю та лампою</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('УМБ Power Bank Solar 20000 mAh з сонячною панеллю та лампою')">Купити</button>
                     </div>
                 </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">340 ₴</span></div>
-                    <div class="product-title">УМБ Power Bank Solar 20000 mAh з сонячною панеллю та лампою</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('УМБ Power Bank Solar 20000 mAh з сонячною панеллю та лампою')">Купити</button>
+
+                <div class="product-card" id="p9">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="25.jpg" alt="Solar 40000 Black 1"></div>
+                            <div class="slide"><img src="26.jpg" alt="Solar 40000 Black 2"></div>
+                            <div class="slide"><img src="27.jpg" alt="Solar 40000 Black 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p9', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p9', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">450 ₴</span></div>
+                        <div class="product-title">УМБ Power Bank Solar 40000 mAh із сонячною панеллю та лампою Чорний</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('УМБ Power Bank Solar 40000 mAh із сонячною панеллю та лампою Чорний')">Купити</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="p10">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="28.jpg" alt="Smart Tech 1"></div>
+                            <div class="slide"><img src="29.jpg" alt="Smart Tech 2"></div>
+                            <div class="slide"><img src="30.jpg" alt="Smart Tech 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p10', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p10', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">400 ₴</span></div>
+                        <div class="product-title">Павербанк 50000 mAh 3хUSB Power Bank Smart Tech (Коричневий / Чорний / Білий)</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Павербанк 50000 mAh 3хUSB Power Bank Smart Tech')">Купити</button>
+                    </div>
+                </div>
+
+                <div class="product-card" id="p13">
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slide"><img src="31.jpg" alt="Solar 18000 Orange 1"></div>
+                            <div class="slide"><img src="32.jpg" alt="Solar 18000 Orange 2"></div>
+                            <div class="slide"><img src="33.jpg" alt="Solar 18000 Orange 3"></div>
+                        </div>
+                        <button class="slider-arrow arrow-left" onclick="moveSlide('p13', -1, event)">&#10094;</button>
+                        <button class="slider-arrow arrow-right" onclick="moveSlide('p13', 1, event)">&#10095;</button>
+                        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="price-block"><span class="current-price">450 ₴</span></div>
+                        <div class="product-title">УМБ Power Bank Solar 18000 mAh з сонячною панеллю та лампою Orange</div>
+                        <div class="availability">В наявності</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('УМБ Power Bank Solar 18000 mAh з сонячною панеллю та лампою Orange')">Купити</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="product-card" id="p9">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="25.jpg" alt="Solar 40000 Black 1"></div>
-                        <div class="slide"><img src="26.jpg" alt="Solar 40000 Black 2"></div>
-                        <div class="slide"><img src="27.jpg" alt="Solar 40000 Black 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p9', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p9', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">450 ₴</span></div>
-                    <div class="product-title">УМБ Power Bank Solar 40000 mAh із сонячною панеллю та лампою Чорний</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('УМБ Power Bank Solar 40000 mAh із сонячною панеллю та лампою Чорний')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p10">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="28.jpg" alt="Smart Tech 50000 Brown 1"></div>
-                        <div class="slide"><img src="29.jpg" alt="Smart Tech 50000 Brown 2"></div>
-                        <div class="slide"><img src="30.jpg" alt="Smart Tech 50000 Brown 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p10', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p10', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">285 ₴</span></div>
-                    <div class="product-title">Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Коричневий</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Коричневий')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p11">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="28.jpg" alt="Smart Tech 50000 Black 1"></div>
-                        <div class="slide"><img src="29.jpg" alt="Smart Tech 50000 Black 2"></div>
-                        <div class="slide"><img src="30.jpg" alt="Smart Tech 50000 Black 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p11', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p11', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">285 ₴</span></div>
-                    <div class="product-title">Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Чорний</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Чорний')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p12">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="28.jpg" alt="Smart Tech 50000 White 1"></div>
-                        <div class="slide"><img src="29.jpg" alt="Smart Tech 50000 White 2"></div>
-                        <div class="slide"><img src="30.jpg" alt="Smart Tech 50000 White 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p12', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p12', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">285 ₴</span></div>
-                    <div class="product-title">Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Білий</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Білий')">Купити</button>
-                </div>
-            </div>
-
-            <div class="product-card" id="p13">
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slide"><img src="31.jpg" alt="Solar 18000 Orange 1"></div>
-                        <div class="slide"><img src="32.jpg" alt="Solar 18000 Orange 2"></div>
-                        <div class="slide"><img src="33.jpg" alt="Solar 18000 Orange 3"></div>
-                    </div>
-                    <button class="slider-arrow arrow-left" onclick="moveSlide('p13', -1, event)">&#10094;</button>
-                    <button class="slider-arrow arrow-right" onclick="moveSlide('p13', 1, event)">&#10095;</button>
-                    <div class="slider-dots">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="price-block"><span class="current-price">450 ₴</span></div>
-                    <div class="product-title">УМБ Power Bank Solar 18000 mAh з сонячною панеллю та лампою Orange</div>
-                    <div class="availability">В наявності</div>
-                    <button class="buy-btn" onclick="event.stopPropagation(); openOrderModal('УМБ Power Bank Solar 18000 mAh з сонячною панеллю та лампою Orange')">Купити</button>
-                </div>
-            </div>
-
         </div>
 
     </div>
@@ -862,6 +800,8 @@
                     <input type="tel" id="phoneInput" class="form-control" placeholder="+380" required>
                 </div>
 
+                <div id="colorSelectContainer"></div>
+
                 <div class="form-group">
                     <label>Спосіб доставки</label>
                     <select id="deliveryType" class="form-control" onchange="toggleDeliveryPlaceholder()" required>
@@ -873,200 +813,63 @@
                 <div class="form-group">
                     <label>Місто та номер/адреса відділення</label>
                     <input type="text" id="deliveryInput" class="form-control" placeholder="Наприклад: Київ, Відділення №15" required>
-                    <small style="color: var(--text-muted); font-size: 11px; display: block; margin-top: 4px;">
-                        Будь ласка, вкажіть ваше місто та номер відділення, куди відправити замовлення.
-                    </small>
                 </div>
                 
-                <button type="submit" class="submit-btn" style="background: var(--prom-green); color: #fff; width: 100%; padding: 12px; border: none; border-radius: 4px; font-weight: 700; margin-top: 10px; cursor: pointer;">Підтвердити замовлення</button>
+                <button type="submit" style="background: var(--prom-green); color: #fff; width: 100%; padding: 12px; border: none; border-radius: 4px; font-weight: 700; margin-top: 10px; cursor: pointer;">Підтвердити замовлення</button>
             </form>
         </div>
     </div>
 
     <script>
+        // Сховище для збереження позиції скролу
+        let savedScrollPosition = 0;
+
         const productData = {
-            p1: {
-                title: 'Бездротові навушники Nia NB710',
-                images: ['17824816315674350906478093768518.jpg', 'gkrvarevrnkvy (1).jpg', 'krvatravpavipk (1).jpg'],
-                price: '899 ₴',
-                htmlDesc: `
-                    <p>Сучасна бездротова гарнітура <strong>Nia NB710</strong> створена для тих, хто цінує максимальну свободу рухів, бездоганний звук та комфорт. Спеціальні анатомічні силіконові вставки забезпечують ідеальну посадку, надійне утримання та стабільне носіння навіть під час активних занять спортом чи бігу.</p>
-                    <p>Керування музикою та дзвінками здійснюється за допомогою розумних сенсорних панелей на корпусі навушників. Оснащені високоякісним вбудованим мікрофоном для комфортних дзвінків.</p>
-                    <p>Стильний і компактний зарядний кейс для зберігання навушників виглядає ефектно, акуратно і легко поміщається в кишеню.</p>
-                `,
-                specs: [
-                    { name: 'Версія Bluetooth', value: 'V5.0 (Стабільне з\'єднання)' },
-                    { name: 'Сумісність з ОС', value: 'iOS, Android, Windows' },
-                    { name: 'Тип керування', value: 'Сенсорне (Touch Control)' },
-                    { name: 'Вбудований мікрофон', value: 'Є (в кожному навушнику)' },
-                    { name: 'Порт зарядки кейса', value: 'Type-C' }
-                ],
-                kit: ['Бездротові навушники NIA NB710', 'Зарядний кейс', 'Комплект силіконових амбушюр', 'Кабель Type-C', 'Інструкція']
+            p1: { title: 'Бездротові навушники Nia NB710', images: ['17824816315674350906478093768518.jpg', 'gkrvarevrnkvy (1).jpg', 'krvatravpavipk (1).jpg'], price: '899 ₴', htmlDesc: `<p>Сучасна бездротова гарнітура Nia NB710.</p>`, specs: [{ name: 'Версія Bluetooth', value: 'V5.0' }], kit: ['Навушники', 'Кейс'] },
+            p2: { title: 'Бездротові навушники Air13 Pro Bluetooth сенсорні', images: ['e4kcfivaiukcfvafvi.jpg', 'kcfyafaukafvy.jpg', 'kcvaipeukcafiv.jpg'], price: '500 ₴', htmlDesc: `<p>Комфортні Bluetooth-навушники з класом захисту IPX5.</p>`, specs: [{ name: 'Версія Bluetooth', value: 'V5.3' }], kit: ['Навушники', 'Кейс'] },
+            p3: { title: 'Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank', images: ['8.jpg', '9.jpg'], price: '350 ₴', htmlDesc: `<p>Кейс великої ємності можна використовувати як Power Bank.</p>`, specs: [{ name: 'Ємність кейса', value: '1500 mAh' }], kit: ['Навушники', 'Кейс'] },
+            p4: { title: 'Портативна Bluetooth колонка TG642 з RGB підсвіткою', images: ['10.jpg', '11.jpg', '12.jpg'], price: '700 ₴', htmlDesc: `<p>Стильна та потужна бездротова колонка з підсвіткою.</p>`, specs: [{ name: 'Версія Bluetooth', value: 'V5.3' }], kit: ['Колонка', 'Ремінець'] },
+            p5: { title: 'Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна', images: ['13.jpg', '14.jpg', '15.jpg'], price: '649 ₴', htmlDesc: `<p>Кругове RGB підсвічування та ємний акумулятор.</p>`, specs: [{ name: 'Ємність акумулятора', value: '1500 mAh' }], kit: ['Колонка', 'Кабель'] },
+            p6: { title: 'Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна', images: ['16.jpg', '17.jpg', '18.jpg'], price: '479 ₴', htmlDesc: `<p>Потужна бездротова колонка на 8W.</p>`, specs: [{ name: 'Вихідна потужність', value: '8W' }], kit: ['Колонка', 'Кабель'] },
+            p7: { title: 'Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя', images: ['19.jpg', '20.jpg', '21.jpg'], price: '479 ₴', htmlDesc: `<p>Компактна акустична система з ремінцем.</p>`, specs: [{ name: 'Потужність', value: '5W' }], kit: ['Колонка', 'Шнур'] },
+            p8: { title: 'УМБ Power Bank Solar 20000 mAh з сонячною панеллю та лампою', images: ['22.jpg', '23.jpg', '24.jpg'], price: '340 ₴', htmlDesc: `<p>Павербанк із сонячною панеллю та вбудованою лампою.</p>`, specs: [{ name: 'Ємність', value: '20000 mAh' }], kit: ['Повербанк', 'Кабель'] },
+            p9: { title: 'УМБ Power Bank Solar 40000 mAh із сонячною панеллю та лампою Чорний', images: ['25.jpg', '26.jpg', '27.jpg'], price: '450 ₴', htmlDesc: `<p>Надпотужне мобільне джерело енергії від UKC.</p>`, specs: [{ name: 'Ємність', value: '40000 mAh' }], kit: ['Повербанк', 'Кабель'] },
+            
+            // ОНОВЛЕНИЙ SMART TECH
+            p10: { 
+                title: 'Павербанк 50000 mAh 3хUSB Power Bank Smart Tech', 
+                images: ['28.jpg', '29.jpg', '30.jpg'], 
+                price: '400 ₴', 
+                htmlDesc: `<p>Високоємний портативний акумулятор Smart Tech на 50000 mAh. Доступний у трьох кольорах: Чорний, Білий, Коричневий. Має вбудований ліхтарик та 3 незалежні порти USB з виходом 5V 2.1A.</p>`, 
+                specs: [{ name: 'Ємність', value: '50000 mAh' }, { name: 'Кольори', value: 'Чорний, Білий, Коричневий' }, { name: 'Виходи', value: '3 х USB' }], 
+                kit: ['Павербанк Smart Tech 50000 mAh', 'Кабель microUSB', 'Фірмова коробка'],
+                hasColors: true 
             },
-            p2: {
-                title: 'Бездротові навушники Air13 Pro Bluetooth сенсорні',
-                images: ['e4kcfivaiukcfvafvi.jpg', 'kcfyafaukafvy.jpg', 'kcvaipeukcafiv.jpg'],
-                price: '500 ₴',
-                htmlDesc: `
-                    <p><strong>Air13 Pro</strong> — це видатні Bluetooth-навушники, створені для тих, хто цінує якість та комфорт під час прослуховування музики або спілкування телефоном. Виготовлені з високоякісних матеріалів.</p>
-                    <p>Навушники мають клас захисту <strong>IPX5</strong> від води та поту. Вбудований HD-мікрофон забезпечує чіткий зв'язок під час дзвінків, дозволяя спілкуватися без перешкод.</p>
-                `,
-                specs: [
-                    { name: 'Тип пристрою', value: 'Бездротові TWS навушники' },
-                    { name: 'Версія Bluetooth', value: 'V5.3' },
-                    { name: 'Дисплей на корпусі', value: 'Є (Світлодіодний LED)' },
-                    { name: 'Вологозахист', value: 'IPX5 (Від поту та бризок)' }
-                ],
-                kit: ['Бездротові навушники Air13 Pro', 'Зарядний бокс з LED-дисплеєм', 'Зарядний кабель USB', 'Фірмова коробка']
-            },
-            p3: {
-                title: 'Бездротові bluetooth навушники True Wireless F9-5 TWS + PowerBank',
-                images: ['8.jpg', '9.jpg'],
-                price: '350 ₴',
-                htmlDesc: `
-                    <p>Навушники <strong>True Wireless F9-5 TWS</strong> виготовлені з якісних матеріалів. Головна унікальна фішка — багатофункціональний зарядний кейс великої ємності (<strong>1500 mAh</strong>), який можна використовувати як повноцінний <strong>Power Bank</strong> для екстреної підзарядки смартфона!</p>
-                `,
-                specs: [
-                    { name: 'Тип підключення', value: 'Бездротові True Wireless' },
-                    { name: 'Версія Bluetooth', value: 'V5.0' },
-                    { name: 'Функція Power Bank', value: 'Є (Ємність кейса 1500 mAh)' },
-                    { name: 'Дисплей кейса', value: 'Цифровий LED індикатор заряду' }
-                ],
-                kit: ['Навушники True Wireless F9-5 TWS', 'Кейс-павербанк (1500 mAh)', 'Кабель USB - MicroUSB', 'Запасні амбушюри (2 пары)', 'Інструкція']
-            },
-            p4: {
-                title: 'Портативна Bluetooth колонка TG642 з RGB підсвіткою',
-                images: ['10.jpg', '11.jpg', '12.jpg'],
-                price: '700 ₴',
-                htmlDesc: `
-                    <p><strong>TG642</strong> — це стильна та потужна портативна Bluetooth колонка. Головною особливістю моделі є динамічна **RGB підсвітка**, яка створює святкову атмосферу та адаптується під ритм вашої музики.</p>
-                    <p>Завдяки міцному ремінцю в комплекті, колонку максимально зручно брати з собою на прогулянки. Підтримує відтворення через Bluetooth, карти MicroSD, USB-флешки, а также має вбудоване FM-радіо.</p>
-                `,
-                specs: [
-                    { name: 'Тип пристрою', value: 'Портативна бездротова колонка' },
-                    { name: 'Версія Bluetooth', value: 'V5.3' },
-                    { name: 'Підсвітка', value: 'Яскрава багатоколірна RGB' },
-                    { name: 'Інтерфейси', value: 'Bluetooth, USB, TF-card, AUX, FM' }
-                ],
-                kit: ['Портативна колонка TG642', 'Ремінець для перенесення', 'Зарядний кабель USB', 'Коробка']
-            },
-            p5: {
-                title: 'Портативна Bluetooth колонка TG657 з RGB підсвіткою (1500 mAh) Чорна',
-                images: ['13.jpg', '14.jpg', '15.jpg'],
-                price: '649 ₴',
-                htmlDesc: `
-                    <p><strong>TG657</strong> — це компактна бездротова акустична система з потужним звучанням та ефектним круговим <strong>RGB підсвічуванням</strong>. Вона ідеально підходить для створення атмосфери вдома, на вечірці чи під час відпочинку на природі.</p>
-                    <p>Колонка оснащена акумулятором ємністю <strong>1500 mAh</strong>, що забезпечує тривалий час автономної роботи. Підтримує стабільне бездротове з'єднання, карти пам'яті MicroSD та USB-накопичувачі.</p>
-                `,
-                specs: [
-                    { name: 'Тип пристрою', value: 'Портативна Bluetooth колонка' },
-                    { name: 'Ємність акумулятора', value: '1500 mAh' },
-                    { name: 'Ефекти підсвітки', value: 'Динамічна RGB' },
-                    { name: 'Колір корпусу', value: 'Чорний (Black)' },
-                    { name: 'Підтримка носіїв', value: 'USB, TF/MicroSD, Bluetooth' }
-                ],
-                kit: ['Портативна колонка TG657 Чорна', 'Кабель для зарядки', 'Інструкція', 'Заводська упаковка']
-            },
-            p6: {
-                title: 'Портативна Bluetooth колонка TG658 8W з RGB підсвіткою Чорна',
-                images: ['16.jpg', '17.jpg', '18.jpg'],
-                price: '479 ₴',
-                htmlDesc: `
-                    <p><strong>TG658</strong> — це потужна бездротова колонка на <strong>8W</strong>, що поєднує в собі насичений звук та яскраве візуальне оформлення. Динамічна багатоколірна RGB підсвітка заповнює простір навколо та синхронізується з вашими улюбленими треками.</p>
-                    <p>Пристрій має надійний захист та зручний форм-фактор для транспортування. Вона стане незамінним супутником у подорожах, на тренуваннях чи заміських поїздках.</p>
-                `,
-                specs: [
-                    { name: 'Вихідна потужність', value: '8W' },
-                    { name: 'Тип підключення', value: 'Bluetooth V5.3' },
-                    { name: 'Ефекти світла', value: 'Яскрава RGB підсвітка' },
-                    { name: 'Колір', value: 'Чорний' },
-                    { name: 'Режими роботи', value: 'Bluetooth, AUX, TF-card, USB' }
-                ],
-                kit: ['Портативна акустика TG658', 'Зарядний інтерфейсний кабель', 'Інструкція користувача', 'Коробка']
-            },
-            p7: {
-                title: 'Портативна Bluetooth колонка TG652 5W з RGB підсвіткою та ремінцем Синя',
-                images: ['19.jpg', '20.jpg', '21.jpg'],
-                price: '479 ₴',
-                htmlDesc: `
-                    <p><strong>TG652</strong> — компактна портативна акустична система потужністю <strong>5W</strong>, виготовлена в яскравому синьому корпусі з міцним тканинним ремінцем для зручного носіння на руці або рюкзаку.</p>
-                    <p>Модель оснащена красивим світлодіодним <strong>RGB підсвічуванням</strong>, яке має кілька режимів свічення. Колонка ідеально підійде для прогулянок, поїздок на велосипеді чи пікніків завдяки своїм скромним габаритам та збалансованому звуку.</p>
-                `,
-                specs: [
-                    { name: 'Потужність динаміка', value: '5W' },
-                    { name: 'Версія Bluetooth', value: 'V5.3' },
-                    { name: 'Особливості', value: 'Тканинний ремінець, RGB підсвітка' },
-                    { name: 'Колір корпусу', value: 'Синій (Blue)' },
-                    { name: 'Відтворення', value: 'Bluetooth, TF-карта, USB, FM' }
-                ],
-                kit: ['Портативна колонка TG652 Синя', 'Шнур для зарядки', 'Інструкція', 'Упаковка']
-            },
-            p8: {
-                title: 'УМБ Power Bank Solar 20000 mAh з сонячною панеллю та лампою',
-                images: ['22.jpg', '23.jpg', '24.jpg'],
-                price: '340 ₴',
-                htmlDesc: `<p>Універсальна мобільна батарея ємністю 20000 mAh. Оснащена світлодіодним ліхтарем-лампою та сонячною панеллю для підтримки заряду акумулятора на відкритому повітрі.</p>`,
-                specs: [{ name: 'Ємність батареї', value: '20000 mAh' }, { name: 'Тип панелі', value: 'Сонячна (Solar)' }],
-                kit: ['Повербанк Solar 20000 mAh', 'Кабель microUSB', 'Коробка']
-            },
-            p9: {
-                title: 'УМБ Power Bank Solar 40000 mAh із сонячною панеллю та лампою Чорний',
-                images: ['25.jpg', '26.jpg', '27.jpg'],
-                price: '450 ₴',
-                htmlDesc: `<p>Надпотужне мобільне джерело енергії ємністю 40000 mAh від UKC у чорному металевому корпусі. Має блок із 20 яскравих світлодіодів із трьома режимами роботи та два вихідні порти USB.</p>`,
-                specs: [{ name: 'Заявлена ємність', value: '40000 mAh' }, { name: 'Кількість LED діодів', value: '20' }, { name: 'Матеріал корпусу', value: 'Метал/Пластик' }],
-                kit: ['Повербанк UKC Solar 40000 mAh', 'Шнур USB - microUSB', 'Упаковка']
-            },
-            p10: {
-                title: 'Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Коричневий',
-                images: ['28.jpg', '29.jpg', '30.jpg'],
-                price: '285 ₴',
-                htmlDesc: `<p>Високоємний портативний акумулятор Smart Tech на 50000 mAh у Коричневому виконанні. Має лаконічний дизайн, міцний пластиковий корпус, вбудований ліхтарик та 3 незалежні порти USB з виходом 5V 2.1A.</p>`,
-                specs: [{ name: 'Ємність', value: '50000 mAh' }, { name: 'Порти виходу', value: '3 х USB 5V 2.1A' }, { name: 'Колір корпусу', value: 'Коричневий' }],
-                kit: ['Павербанк Smart Tech 50000 mAh Коричневий', 'Кабель microUSB', 'Фірмова коробка']
-            },
-            p11: {
-                title: 'Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Чорний',
-                images: ['28.jpg', '29.jpg', '30.jpg'],
-                price: '285 ₴',
-                htmlDesc: `<p>Високоємний портативний акумулятор Smart Tech на 50000 mAh у Чорному кольорі. Має лаконічний дизайн, міцний корпус, вбудований ліхтарик та 3 незалежні порти USB з виходом 5V 2.1A.</p>`,
-                specs: [{ name: 'Ємність', value: '50000 mAh' }, { name: 'Порти виходу', value: '3 х USB 5V 2.1A' }, { name: 'Колір корпусу', value: 'Чорний' }],
-                kit: ['Павербанк Smart Tech 50000 mAh Чорний', 'Кабель microUSB', 'Фірмова коробка']
-            },
-            p12: {
-                title: 'Павербанк 50000 mAh 3хUSB Power Bank Smart Tech Білий',
-                images: ['28.jpg', '29.jpg', '30.jpg'],
-                price: '285 ₴',
-                htmlDesc: `<p>Високоємний портативний акумулятор Smart Tech на 50000 mAh у Білому кольорі. Має лаконічний дизайн, вбудований ліхтарик та 3 незалежні порти USB з виходом 5V 2.1A.</p>`,
-                specs: [{ name: 'Ємність', value: '50000 mAh' }, { name: 'Порти виходу', value: '3 х USB 5V 2.1A' }, { name: 'Колір корпусу', value: 'Білий' }],
-                kit: ['Павербанк Smart Tech 50000 mAh Білий', 'Кабель microUSB', 'Фірмова коробка']
-            },
-            p13: {
-                title: 'УМБ Power Bank Solar 18000 mAh з сонячною панеллю та лампою Orange',
-                images: ['31.jpg', '32.jpg', '33.jpg'],
-                price: '450 ₴',
-                htmlDesc: `<p>Мобільне зарядне Power Bank Charger ємністю 18000 mAh у захищеному чорному корпусі з яскравими помаранчевими вставками. Оснащене ліхтарем та сонячною батареєю для кемпінгу та подорожей.</p>`,
-                specs: [{ name: 'Ємність', value: '18000 mAh' }, { name: 'Модель', value: 'Power Bank Charger' }, { name: 'Колір вставок', value: 'Помаранчевий (Orange)' }],
-                kit: ['Повербанк Solar 18000 mAh Orange', 'Зарядний кабель', 'Коробка']
-            }
+            
+            p13: { title: 'УМБ Power Bank Solar 18000 mAh з сонячною панеллю та лампою Orange', images: ['31.jpg', '32.jpg', '33.jpg'], price: '450 ₴', htmlDesc: `<p>Захищений корпус з яскравими помаранчевими вставками.</p>`, specs: [{ name: 'Ємність', value: '18000 mAh' }], kit: ['Повербанк', 'Кабель'] }
         };
 
         const sliderStates = {
-            p1: { current: 0, total: 3 },
-            p2: { current: 0, total: 3 },
-            p3: { current: 0, total: 2 },
-            p4: { current: 0, total: 3 },
-            p5: { current: 0, total: 3 },
-            p6: { current: 0, total: 3 },
-            p7: { current: 0, total: 3 },
-            p8: { current: 0, total: 3 },
-            p9: { current: 0, total: 3 },
-            p10: { current: 0, total: 3 },
-            p11: { current: 0, total: 3 },
-            p12: { current: 0, total: 3 },
-            p13: { current: 0, total: 3 },
-            adSlider: { current: 0, total: 0 }
+            p1: { current: 0, total: 3 }, p2: { current: 0, total: 3 }, p3: { current: 0, total: 2 },
+            p4: { current: 0, total: 3 }, p5: { current: 0, total: 3 }, p6: { current: 0, total: 3 },
+            p7: { current: 0, total: 3 }, p8: { current: 0, total: 3 }, p9: { current: 0, total: 3 },
+            p10: { current: 0, total: 3 }, p13: { current: 0, total: 3 }, adSlider: { current: 0, total: 0 }
         };
+
+        // Функція перемикання категорій
+        function switchCategory(catId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const blocks = document.querySelectorAll('.category-block');
+            blocks.forEach(block => {
+                if (catId === 'all') {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = block.id === `cat-${catId}` ? 'block' : 'none';
+                }
+            });
+        }
 
         function sortProducts(criterion) {
             const grids = document.querySelectorAll('.products-grid');
@@ -1111,8 +914,7 @@
 
         function openZoom(imgSrc) {
             const overlay = document.getElementById('zoomOverlay');
-            const img = document.getElementById('zoomedImg');
-            img.src = imgSrc;
+            document.getElementById('zoomedImg').src = imgSrc;
             overlay.style.display = 'flex';
         }
 
@@ -1123,6 +925,9 @@
         function openProductPage(id) {
             const data = productData[id];
             if (!data) return;
+
+            // Запам'ятовуємо поточну позицію прокрутки перед відкриттям
+            savedScrollPosition = window.scrollY;
 
             sliderStates.adSlider.current = 0;
             sliderStates.adSlider.total = data.images.length;
@@ -1156,7 +961,7 @@
                         <div class="ad-title" style="margin-top:12px;">${data.title}</div>
                         <div class="ad-price">${data.price}</div>
                         <div class="availability" style="justify-content: center; font-size: 13px; margin-bottom: 16px;">В наявності</div>
-                        <button class="prom-action-btn" onclick="openOrderModal('${data.title.replace(/'/g, "\\'")}')">Купити</button>
+                        <button class="prom-action-btn" onclick="openOrderModal('${id}')">Купити</button>
                     </div>
                 </div>
 
@@ -1183,11 +988,32 @@
 
         function closeProductPage() {
             document.getElementById('productPage').style.display = 'none';
+            // Повертаємо користувача точно на те місце, де він був
+            window.scrollTo(0, savedScrollPosition);
         }
 
-        function openOrderModal(productName) {
-            document.getElementById('productInput').value = productName;
-            document.getElementById('modalProductTitle').innerText = productName;
+        function openOrderModal(productId) {
+            const data = productData[productId] || productData['p10'];
+            document.getElementById('productInput').value = data.title;
+            document.getElementById('modalProductTitle').innerText = data.title;
+
+            // Якщо товар має вибір кольорів (Smart Tech)
+            const colorContainer = document.getElementById('colorSelectContainer');
+            if (data.hasColors) {
+                colorContainer.innerHTML = `
+                    <div class="form-group">
+                        <label>Оберіть колір повербанка</label>
+                        <select id="colorSelect" class="form-control" required>
+                            <option value="Чорний">Чорний</option>
+                            <option value="Білий">Білий</option>
+                            <option value="Коричневий">Коричневий</option>
+                        </select>
+                    </div>
+                `;
+            } else {
+                colorContainer.innerHTML = '';
+            }
+
             document.getElementById('orderModal').style.display = 'flex';
         }
 
@@ -1202,11 +1028,17 @@
             const token = '8299746772:AAEH-ACiz0bFw1L8WjwcqvcwNJ4vlDHFjfk'; 
             const chatId = '1429169329'; 
             
-            const product = document.getElementById('productInput').value;
+            let product = document.getElementById('productInput').value;
             const name = document.getElementById('nameInput').value;
             const phone = document.getElementById('phoneInput').value;
             const deliveryType = document.getElementById('deliveryType').value;
             const deliveryDetails = document.getElementById('deliveryInput').value;
+
+            // Додаємо колір до тексту, якщо він вибраний
+            const colorSelect = document.getElementById('colorSelect');
+            if (colorSelect) {
+                product += ` (Колір: ${colorSelect.value})`;
+            }
 
             const text = `🔔 **Нове замовлення!**\n\n📦 Товар: ${product}\n👤 Покупець: ${name}\n📞 Телефон: ${phone}\n🚚 Служба: ${deliveryType}\n📍 Адреса/Відділення: ${deliveryDetails}`;
             const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
@@ -1226,7 +1058,7 @@
             const type = document.getElementById('deliveryType').value;
             const input = document.getElementById('deliveryInput');
             if (type === 'Укрпошта') {
-                input.placeholder = 'Наприклад: Львів, індекс 79000, вул. Centralna 5';
+                input.placeholder = 'Наприклад: Львів, індекс 79000, вул. Центральна 5';
             } else {
                 input.placeholder = 'Наприклад: Київ, Відділення №15';
             }
@@ -1243,7 +1075,7 @@
         }
 
         function setupClickableCards() {
-            ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13'].forEach(id => {
+            ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p13'].forEach(id => {
                 const element = document.getElementById(id);
                 if (element) {
                     element.addEventListener('click', (e) => {
